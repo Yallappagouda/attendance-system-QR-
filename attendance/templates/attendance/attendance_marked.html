@@ -1,0 +1,13 @@
+{% extends 'attendance/base.html' %}
+{% block content %}
+<div class="text-center my-5">
+  <div class="alert alert-success display-6 py-4">
+    {% if already_marked %}
+      <div>Attendance already marked for <strong>{{ session.course.name }}</strong>.</div>
+    {% else %}
+      <div>Attendance marked successfully for <strong>{{ session.course.name }}</strong>!</div>
+    {% endif %}
+  </div>
+  <a href="{% url 'student_dashboard' %}" class="btn btn-main">Back to Dashboard</a>
+</div>
+{% endblock %}

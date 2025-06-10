@@ -1,0 +1,32 @@
+{% extends 'attendance/base.html' %}
+{% block content %}
+<h2 class="mb-4 text-primary">Staff Dashboard</h2>
+<a class="btn btn-main mb-3" href="{% url 'create_session' %}">+ Create New Session</a>
+<table class="table table-bordered shadow-sm bg-white">
+    <thead>
+        <tr>
+            <th>Session</th>
+            <th>QR Code</th>
+            <th>Attendance</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for session in sessions %}
+    <tr>
+        <td>{{ session }}</td>
+        <td>
+            {% if session.qr_code %}
+            <img src="{{ session.qr_code.url }}" width="100" class="border rounded-2 shadow-sm">
+            {% endif %}
+        </td>
+        <td>
+            <a href="{% url 'session_detail' session.id %}" class="btn btn-info btn-sm mb-1">View List</a>
+            <a href="{% url 'export_attendance' session.id %}" class="btn btn-secondary btn-sm mb-1">Export Excel</a>
+        </td>
+    </tr>
+    {% empty %}
+    <tr><td colspan="3" class="text-center">No sessions created yet.</td></tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

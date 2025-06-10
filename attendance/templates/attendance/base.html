@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>QR Code Attendance System</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap CSS & Google Fonts -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700;400&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Roboto', sans-serif; background: #f6fafd; }
+        .navbar { background: linear-gradient(90deg,#1d3557,#457b9d); }
+        .navbar-brand { font-weight: bold; font-size: 1.7rem; color: #f1faee !important; }
+        .container { max-width: 900px; }
+        .btn-main { background: #457b9d; color: #fff; border: none; }
+        .btn-main:hover { background: #1d3557; color: #fff; }
+        .table thead { background: #a8dadc; }
+        .footer { margin-top: 3rem; text-align: center; color: #aaa; font-size: 0.95rem; }
+    </style>
+    {% block extra_head %}{% endblock %}
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark">
+  <div class="container">
+    <a class="navbar-brand" href="{% url 'landing' %}">QR Attendance</a>
+    <div class="collapse navbar-collapse">
+      <ul class="navbar-nav ms-auto">
+        {% if user.is_authenticated %}
+          {% if user.is_staff and user.staffprofile %}
+            <li class="nav-item"><a class="nav-link" href="{% url 'staff_dashboard' %}">Staff Dashboard</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">Logout</a></li>
+          {% elif user.studentprofile %}
+            <li class="nav-item"><a class="nav-link" href="{% url 'student_dashboard' %}">Student Dashboard</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">Logout</a></li>
+          {% endif %}
+        {% else %}
+          <li class="nav-item"><a class="nav-link" href="{% url 'landing' %}">Home</a></li>
+        {% endif %}
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container mt-4 mb-5">
+    {% block content %}{% endblock %}
+</div>
+<div class="footer">
+    &copy; {{ now.year }} QR Code Attendance System | Designed for mobile & desktop
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+{% block extra_js %}{% endblock %}
+</body>
+</html>

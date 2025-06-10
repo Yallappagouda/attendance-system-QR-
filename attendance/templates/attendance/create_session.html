@@ -1,0 +1,12 @@
+{% extends 'attendance/base.html' %}
+{% block content %}
+<h2 class="mb-4 text-success">Create Attendance Session</h2>
+<form method="post" class="p-4 bg-white shadow rounded-3">
+  {% csrf_token %}
+  <div class="mb-3">
+    {{ form.course.label_tag }} {{ form.course }}
+  </div>
+  <button type="submit" class="btn btn-main">Create &amp; Generate QR</button>
+  <a href="{% url 'staff_dashboard' %}" class="btn btn-outline-secondary ms-2">Cancel</a>
+</form>
+{% endblock %}

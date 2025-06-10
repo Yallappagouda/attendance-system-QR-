@@ -1,0 +1,12 @@
+{% extends 'attendance/base.html' %}
+{% block content %}
+<div class="text-center my-5">
+    <h1 class="display-4 mb-3 fw-bold text-primary">QR Code Attendance System</h1>
+    <p class="lead mb-5">Fast, paperless, and secure attendance for your institution.</p>
+    <div>
+        <a href="/admin/" class="btn btn-dark btn-lg m-2 px-5">Admin Login</a>
+        <a href="{% url 'student_login' %}" class="btn btn-success btn-lg m-2 px-5">Student</a>
+        <a href="{% url 'staff_login' %}" class="btn btn-main btn-lg m-2 px-5">Staff</a>
+    </div>
+</div>
+{% endblock %}

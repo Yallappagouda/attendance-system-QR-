@@ -1,0 +1,9 @@
+{% extends 'attendance/base.html' %}
+{% block content %}
+<div class="text-center my-5">
+  <div class="alert alert-danger display-6 py-4">
+    Attendance Failed: {{ reason }}
+  </div>
+  <a href="{% url 'student_dashboard' %}" class="btn btn-warning">Back to Dashboard</a>
+</div>
+{% endblock %}

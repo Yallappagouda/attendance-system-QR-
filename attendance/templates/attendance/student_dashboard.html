@@ -1,0 +1,25 @@
+{% extends 'attendance/base.html' %}
+{% block content %}
+<h2 class="mb-4 text-success">Active Sessions</h2>
+<div class="row">
+  {% for session in sessions %}
+  <div class="col-md-6 mb-4">
+    <div class="card shadow">
+      <div class="card-body">
+        <h5 class="card-title text-primary">{{ session.course.name }}</h5>
+        <div class="mb-2 text-muted small">Course Code: {{ session.course.code }}</div>
+        <div class="mb-2">Session started at <b>{{ session.start_time|date:"H:i d-m-Y" }}</b></div>
+        {% if session.qr_code %}
+        <div class="mb-2 text-center">
+          <img src="{{ session.qr_code.url }}" width="120" class="border rounded-3">
+        </div>
+        {% endif %}
+        <a href="{% url 'mark_attendance' session.id %}" class="btn btn-main w-100">Scan &amp; Mark Attendance</a>
+      </div>
+    </div>
+  </div>
+  {% empty %}
+  <div class="col-12 text-center text-muted">No active sessions. Please check again later.</div>
+  {% endfor %}
+</div>
+{% endblock %}
