@@ -1,0 +1,11 @@
+*.pyc
+__pycache__/
+db.sqlite3
+/media/
+.env
+venv/
+
+
+git add .gitignore
+git commit -m "Add .gitignore"
+git push
